@@ -1,19 +1,14 @@
 const express = require('express');
 const app = express();
 
-// define a route for the GET request
-app.get('/users', (req, res) => {
-  // extract the query string from the request
-  const search = req.query.search;
-
-  // return a list of users that match the search term in JSON format
-  res.json([
-    { id: 1, name: 'John Doe' },
-    { id: 2, name: 'Jane Smith' }
-  ].filter(user => user.name.includes(search)));
+app.get('/', (req, res) => {
+  let searchQuery = req.query.search;
+  res.send(`Hello World! You searched for ${searchQuery}`);
 });
-
-// start the server
+app.get('/chocolate', (req, res) => {
+  let amount = req.query.amount;
+  res.send(`You requested ${amount} units of chocolate`);
+});
 app.listen(3000, () => {
   console.log('Server is listening on port 3000');
 });
